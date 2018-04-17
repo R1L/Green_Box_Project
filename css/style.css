@@ -1,0 +1,45 @@
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar){
+  background-color: #27ae60;
+}
+
+h1{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#charts{
+  width: 1600px;
+  margin: 0 auto;
+  float: right;
+}
+
+#splineChart{
+  width: 1600px;
+}
+
+#pieChart{
+  width: 800px;
+    height: 400px;
+    float: left;
+}
+
+#barChart{
+  width: 800px;
+    height: 400px;
+    float: left;
+}
+
+.titeArea{
+  width: 1600px;
+  margin: 0 auto;
+  float: 
+}
+
+.menuButton{
+  width: 400px;
+  float: left;
+}
+
+.title{
+  width: 1200px;
+  float: left;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Green Box Project</title>
+    <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+  <div ng-controller="AppCtrl" layout="column" style="height: 200px;" ng-cloak="" class="sidenavdemoCustomSidenav" ng-app="MyApp">
+    <md-toolbar layout="row" layout-align="center center" class="md-theme-green">
+      <i class="material-icons" ng-click="toggleLeft()">menu</i>
+      <h1>Green Box</h1>
+    </md-toolbar>
+  <section layout="row" flex="">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+      <md-toolbar layout="row" layout-align="center" class="md-theme-indigo">
+        <h1>Menu</h1>
+      </md-toolbar>
+      <md-content layout="column" layout-align="center center">
+        <section layout="column" layout-sm="column" layout-align="center center" layout-wrap>
+          <md-button>Overview</md-button>
+          <md-button>Day</md-button>
+          <md-button>Month</md-button>
+          <md-button>Year</md-button>
+        </section>
+        <i ng-click="toggleLeft()" class="material-icons">close</i>
+      </md-content>
+    </md-sidenav>
+    <md-content flex="" layout-padding="">
+      <div layout="column" layout-align="top left">
+        <div>
+          <md-button ng-click="toggleLeft()" class="md-raised">Menu</md-button>
+        </div>
+      </div>
+    </md-content>
+  </section>
+</div>
+<div id="mainContent">
+<div id="charts">
+<div id="splineChart"></div>
+<div id="pieChart"></div>
+<div id="barChart"></div>
+</div>
+</div>
+<script>
+  // var pubnub = new PubNub({
+  //   publishKey:   'pub-c-95dbc9f1-91bc-4968-84fd-b8c411b0c055', // Our pub-key from PubNub
+  //   subscribeKey: 'sub-c-91dadc28-285e-11e8-85fd-a682db239c54' // Our sub-key from PubNub
+  // });
+
+  var pubnub = new PubNub({
+    subscribeKey: 'sub-c-bd9ab0d6-6e02-11e5-8d3b-0619f8945a4f' // Test sub-key from Eon Project
+  });
+
+  // var channel = 'Channel-cu5jkbx6a' Our PubNub channel
+  var channel = 'test-channel-0.5659127200993137'; // Test channel from Eon Project
+
+  eon.chart({
+    channels: [channel],
+    flow: true,
+    pubnub: pubnub,
+    generate: {
+      bindto: '#splineChart',
+      data: {
+        type: 'spline',
+        labels: true
+      }
+    }
+
+  }
+);
+
+eon.chart({
+  channels: [channel],
+  flow: true,
+  pubnub: pubnub,
+  generate: {
+    bindto: '#pieChart',
+    data: {
+      labels: true,
+      type: 'donut'
+
+    }
+  }
+
+}
+);
+
+eon.chart({
+  pubnub: pubnub,
+  channels: [channel],
+  generate: {
+    bindto: '#barChart',
+    data: {
+      labels: true,
+      type: 'bar'
+    },
+    bar: {
+      width: {
+        ratio: 0.5
+      }
+    },
+    tooltip: {
+        show: false
+    }
+  }
+});
+
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.js"></script>
+<script src="lib/app.js"></script>
+  </body>
+</html>
